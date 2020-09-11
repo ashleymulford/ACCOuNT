@@ -15,7 +15,7 @@ done
 
 #Imputation successful for chrs 21,22
 
-#Imputation failed for chrs 14-20 - due to the following error:
+#Imputation failed for chrs 1-20 - due to the following error:
   #Error: More than 10000 obvious strand flips have been detected. Please check strand. Imputation cannot be started!
 
 
