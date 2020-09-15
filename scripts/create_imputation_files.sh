@@ -26,7 +26,7 @@ done
 
 #qc and imputation performed: https://imputation.biodatacatalyst.nhlbi.nih.gov/#!pages/home
 
-#once imputation is complete download and renmae files:
+#once imputation is complete download files:
   #go to results for wget command
 
 #unzip with 7za
