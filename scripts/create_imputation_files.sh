@@ -30,6 +30,6 @@ done
   #go to results for wget command
 
 #unzip with 7za
-7za e chr_${chr}.zip;
+7za e chr_#.zip;
   #enter password (from email)
 
