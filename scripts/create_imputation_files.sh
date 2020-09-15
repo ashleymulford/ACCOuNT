@@ -1,26 +1,3 @@
-#How to fix strand flip error (requires plink formatted files):
-  #identify genome build
-    #easiest way is to search for an rsid on https://www.ncbi.nlm.nih.gov/snp/
-
-  #use this website to identify chip needed, input bim file and run:
-    #http://mccarthy.well.ox.ac.uk/chipendium/ui/
-  
-  #download strand data (under strand and position files) - use corresponding chip and genome build:
-    #https://www.well.ox.ac.uk/~wrayner/strand/index.html
-    #use wget to download to your directory
-  
-  #download the following script:
-  wget https://www.well.ox.ac.uk/~wrayner/strand/update_build.sh
-  
-  #run script to convert data to consistent strand/reduce strand flips:
-  bash update_build.sh <bed-file-stem> <strand-file> <output-file-stem>
-    #<bed-file-stem>	is the name of your binary ped set minus the .bed, .bim or .fam extension
-    #<strand-file>	is appropriate strand file for you chip and current strand orientation (TOP, SOURCE, ILMN)
-    #<output-file-stem>	is the name of the new output file to create again minus the .bed, .bim or .fam extension
-  
-  #once updated bed/bim/fam obtained proceed with making vcfs for imputation
-
-
 #Genome build 38
 #Chip: Multi-EthnicGlobal_A1 (identified with http://mccarthy.well.ox.ac.uk/chipendium/ui/)
 
