@@ -6,7 +6,6 @@ do bcftools view -q 0.01:minor chr${chr}.dose.vcf.gz | bgzip -c > chr${chr}_maf0
 done
 
 #Filer out SNPs with r^2 < 0.8:
-for chr in {1..21};
-do 
+for chr in {1..22};
+do bcftools view -e '(R2<0.8)' chr${chr}_maf01.vcf.gz | bgzip -c > chr${chr}_maf01_r28.vcf.gz;
 done
-
