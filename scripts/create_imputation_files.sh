@@ -1,3 +1,5 @@
+#For both black and white cohorts:
+
 #Genome build 38
 #Chip: Multi-EthnicGlobal_A1 (identified with http://mccarthy.well.ox.ac.uk/chipendium/ui/)
 
