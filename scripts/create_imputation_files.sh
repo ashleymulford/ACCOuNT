@@ -32,4 +32,5 @@ done
 #unzip with 7za
 7za e chr_#.zip;
   #enter password (from email)
+  #produces two gzipped files (leave gzipped to save space)  
 
