@@ -1,3 +1,0 @@
-#Filter out SNPs with maf < 0.01
-
-bcftools view -q 0.01:minor chr22.dose.vcf.gz | bgzip -c > chr22_maf01.vcf.gz
