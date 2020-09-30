@@ -19,5 +19,5 @@ done
 
 
 #get maf from vcfs
-#get dosages (counts) from ped file 
+#get dosages (counts) from ped files 
 
