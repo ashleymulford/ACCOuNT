@@ -41,7 +41,7 @@ chrpath = args.inputdir
 c = args.chr
 mafthresh = args.maf
 r2thresh = args.rsq
-chrfile = chrpath + "chr" + c + ".dose.vcf.gz"
+chrfile = chrpath + "chr" + c + "_maf01_r28.vcf.gz"
 
 
 # get dosage file data
