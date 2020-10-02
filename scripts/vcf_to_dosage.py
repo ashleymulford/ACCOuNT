@@ -1,8 +1,9 @@
 #!/usr/bin/python
-'''This python script takes one imputed vcf file as input, 
-and makes a predixcan dosage formatted output file:
-chr*.dosage.txt
-dose allele is Allele2 see https://github.com/hakyimlab/PrediXcan/blob/master/Software/HOWTO-beta.md'''
+'''This python script takes one imputed vcf file as input, and makes a predixcan dosage formatted output file: chr*.dosage.txt
+vcfs should be filtered by maf and r2 before using this script
+dose allele is A2, freq is of A2, A2 is alt in vcf
+this script does not make the samples file needed for predixcan
+see https://github.com/hakyimlab/PrediXcan/blob/master/Software/HOWTO-beta.md'''
 
 import gzip
 import re
@@ -21,32 +22,22 @@ def check_arg(args=None):
 			type=str,
                         required='True'
                         )
-    parser.add_argument('-m', '--maf',
-                        help='maf threshold, default 0.01',
-                        type=float,
-                        default=0.01)
-    parser.add_argument('-r2', '--rsq',
-                        help='R2 threshold, default 0.8',
-                        type=float,
-                        default=0.8
-                        )
     return parser.parse_args(args)
 
 #retrieve command line arguments
-
 args = check_arg(sys.argv[1:])
 chrpath = args.inputdir
 c = args.chr
-mafthresh = args.maf
-r2thresh = args.rsq
 chrfile = chrpath + "chr" + c + "_maf01_r28.vcf.gz"
+
 
 # get dosage file data
 if(os.path.exists(chrpath + 'UMich_dosages/') == False):
     os.mkdir(chrpath + 'UMich_dosages/')
 
-outdosage = open(chrpath + "UMich_dosages/chr" + c + ".maf" + str(mafthresh) + ".r2" + str(r2thresh) + ".dosage.txt","w")
+outdosage = open(chrpath + "UMich_dosages/chr" + c + ".dosage.txt","w")
 for line in gzip.open(chrfile):
+    #skip meta data and header lines
     if(line.startswith(b'##')):
         continue
     if(line.startswith(b'#CHROM')):
