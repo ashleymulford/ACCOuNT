@@ -50,8 +50,6 @@ if(os.path.exists(chrpath + 'UMich_dosages/') == False):
 
 outdosage = gzip.open(chrpath + "UMich_dosages/chr" + c + ".maf" + str(mafthresh) + ".r2" + str(r2thresh) + ".dosage.txt.gz","wb")
 for line in gzip.open(chrfile):
-    if(line.startswith('##')):
-            continue
     arr = line.strip().split()
     if(line.startswith('#CHROM')): #only one line should match #CHROM
         ids = arr[9:]
