@@ -51,15 +51,6 @@ if(os.path.exists(chrpath + 'UMich_dosages/') == False):
 outdosage = gzip.open(chrpath + "UMich_dosages/chr" + c + ".maf" + str(mafthresh) + ".r2" + str(r2thresh) + ".dosage.txt.gz","wb")
 for line in gzip.open(chrfile):
     arr = line.strip().split()
-    if(line.startswith('#CHROM')): #only one line should match #CHROM
-        ids = arr[9:]
-        #split and join ids into FID and IID for PrediXcan
-        ids2 = map(lambda x : x.split("_"), ids)
-        ids = map(lambda x : ' '.join(x), ids2)
-        outsamples = open(chrpath + "UMich_dosages/samples.txt","w")
-        outsamples.write("\n".join(ids))
-        outsamples.close()
-        continue
     (chr, pos, id, ref, alt, qual, filter, info, format) = arr[0:9]
     if(bool(re.search('ER2',info)) == True): #look for 'ER2' to decide whether to split into 3 or 4
         (af, maf, impr2, imper2) = info.split(";")
