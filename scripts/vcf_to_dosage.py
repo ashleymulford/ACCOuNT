@@ -1,8 +1,8 @@
 #!/usr/bin/python
 '''This python script takes one imputed vcf file as input, 
-and makes a predixcan dosage fornatted output files:
+and makes a predixcan dosage formatted output file:
 chr*.dosage.txt
-dose allele is Allele2, see https://github.com/hakyimlab/PrediXcan/blob/master/Software/HOWTO-beta.md'''
+dose allele is Allele2 see https://github.com/hakyimlab/PrediXcan/blob/master/Software/HOWTO-beta.md'''
 
 import gzip
 import re
@@ -54,11 +54,12 @@ for line in gzip.open(chrfile):
     arr = line.strip().split()
     (chr, pos, id, ref, alt, qual, filter, info, format) = arr[0:9]
     gt_dosagerow = arr[9:]
-    #see http://www.python-course.eu/lambda.php for details
-    dosagerow = map(lambda x : float(x.split(b":")[1]), gt_dosagerow) #lambda function to split each info entry and collect the dosage
+    #get freq of alt allele:
     info_list = info.split(b";")
     af_list = info_list[0].split(b"=")
     freqalt = af_list[1]
+    #get dosage of alt allele
+    dosagerow = map(lambda x : float(x.split(b":")[1]), gt_dosagerow) #lambda function to split each info entry and collect the dosage
     dosages = ' '.join(map(str,dosagerow))
     output = str(chr) + ' ' + str(id) + ' ' + str(pos) + ' ' + str(ref) + ' ' + str(alt) + ' ' + str(freqalt) + ' ' + dosages + '\n'
     output = output.replace("b", "")
