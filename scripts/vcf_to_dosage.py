@@ -52,27 +52,16 @@ outdosage = gzip.open(chrpath + "UMich_dosages/chr" + c + ".maf" + str(mafthresh
 for line in gzip.open(chrfile):
     if(line.startswith(b'##')):
         continue
+    if(line.startswith(b'#CHROM')): #only one line should match #CHROM
+	continue
     arr = line.strip().split()
     (chr, pos, id, ref, alt, qual, filter, info, format) = arr[0:9]
-    if(bool(re.search(b'ER2',info)) == True): #look for 'ER2' to decide whether to split into 3 or 4
-        (af, maf, impr2, imper2) = info.split(";")
-    elif(bool(re.search(b'R2',info)) == True):
-        (af, maf, impr2) = info.split(";")
-    else:
-        (af, maf) = info.split(";") #GENOTYPED_ONLY SNPs
-    r2 = float(impr2.split("=")[1]) #get r2 value as float
-    minor = float(maf.split("=")[1]) #get maf as float
-    if pos in posdict:
-        rsid = posdict[pos]
-    else:
-        rsid = '.'
-    if(r2 > r2thresh and minor > mafthresh and re.search('rs',rsid) != None): #only pull SNPs with rsids and default: R2>0.8, maf>0.01
-        gt_dosagerow = arr[9:]
-        #see http://www.python-course.eu/lambda.php for details
-        dosagerow = map(lambda x : float(x.split(":")[1]), gt_dosagerow) #lambda function to split each info entry and collect the dosage
-        freqalt = round(sum(dosagerow)/(len(dosagerow)*2),4) #calc ALT allele freq (I found that ALT is not always the minor allele)
-        dosages = ' '.join(map(str,dosagerow))
-        output = 'chr' + chr + ' ' + rsid + ' ' + pos + ' ' + ref + ' ' + alt + ' ' + str(freqalt) + ' ' + dosages + '\n'
-        outdosage.write(output)
+    gt_dosagerow = arr[9:]
+    #see http://www.python-course.eu/lambda.php for details
+    dosagerow = map(lambda x : float(x.split(":")[1]), gt_dosagerow) #lambda function to split each info entry and collect the dosage
+    freqalt = round(sum(dosagerow)/(len(dosagerow)*2),4) #calc ALT allele freq (I found that ALT is not always the minor allele)
+    dosages = ' '.join(map(str,dosagerow))
+    output = 'chr' + chr + ' ' + rsid + ' ' + pos + ' ' + ref + ' ' + alt + ' ' + str(freqalt) + ' ' + dosages + '\n'
+    outdosage.write(output)
 
 outdosage.close()
