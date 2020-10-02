@@ -50,6 +50,8 @@ if(os.path.exists(chrpath + 'UMich_dosages/') == False):
 
 outdosage = gzip.open(chrpath + "UMich_dosages/chr" + c + ".maf" + str(mafthresh) + ".r2" + str(r2thresh) + ".dosage.txt.gz","wb")
 for line in gzip.open(chrfile):
+    if(line.startswith('##')):
+        continue
     arr = line.strip().split()
     (chr, pos, id, ref, alt, qual, filter, info, format) = arr[0:9]
     if(bool(re.search('ER2',info)) == True): #look for 'ER2' to decide whether to split into 3 or 4
