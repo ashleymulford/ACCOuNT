@@ -52,7 +52,10 @@ for line in gzip.open(chrfile):
     #get dosage of alt allele
     dosagerow = map(lambda x : float(x.split(b":")[1]), gt_dosagerow) #lambda function to split each info entry and collect the dosage
     dosages = ' '.join(map(str,dosagerow))
-    output = str(chr) + ' ' + str(id) + ' ' + str(pos) + ' ' + str(ref) + ' ' + str(alt) + ' ' + str(freqalt) + ' ' + dosages + '\n'
+    #reformat ids for proteome models (chr:pos)
+    id_list = id.split(b":")
+    id_formatted = str(id_list[0]) + ":" + str(id_list[1])
+    output = str(chr) + ' ' + str(id_formatted) + ' ' + str(pos) + ' ' + str(ref) + ' ' + str(alt) + ' ' + str(freqalt) + ' ' + dosages + '\n'
     output = output.replace("b", "")
     output = output.replace("'", "")
     outdosage.write(output)
