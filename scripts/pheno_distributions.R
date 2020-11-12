@@ -19,9 +19,9 @@ riv_no_missing<-subset(rivaroxaban, `Anti-factor Xa activity (ng/mL)` != "MD")
 
 #plot distribution:
 png(filename = "hist_apixaban_factorx_dist.png", res=100)
-hist(as.integer(api_no_missing$`Anti-factor Xa activity (ng/mL)`, main = "Dist of Anti-Factor Xa Activity - Apixaban", xlab = "Anti-Factor Xa Activity (ng/mL)")
+hist(as.integer(api_no_missing$`Anti-factor Xa activity (ng/mL)`), main = "Dist of Anti-Factor Xa Activity - Apixaban", xlab = "Anti-Factor Xa Activity (ng/mL)")
 dev.off()
 png(filename = "hist_rivaroxaban_factorx_dist.png", res=100)
-hist(as.integer(riv_no_missing$`Anti-factor Xa activity (ng/mL)`, main = "Dist of Anti-Factor Xa Activity - Rivaroxaban", xlab = "Anti-Factor Xa Activity (ng/mL)")
+hist(as.integer(riv_no_missing$`Anti-factor Xa activity (ng/mL)`), main = "Dist of Anti-Factor Xa Activity - Rivaroxaban", xlab = "Anti-Factor Xa Activity (ng/mL)")
 dev.off()
 
