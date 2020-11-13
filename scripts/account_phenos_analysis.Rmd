@@ -1,0 +1,321 @@
+---
+title: "account_phenos"
+author: "Ashley Mulford"
+date: "November 13, 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(data.table)
+library(dplyr)
+library(ggplot2)
+```
+
+#Analysis of covariates and phenotypes
+
+##Two NOAC Drugs: Apixaban and Rivaroxiban
+
+```{r}
+noac_data <- fread("account_noac_processed.csv", header = T)
+
+#subset by drug
+apixaban <- subset(noac_data, `Which NOAC Drug Used`  == "apixaban")
+rivaroxaban <- subset(noac_data, `Which NOAC Drug Used`  == "rivaroxaban")
+
+#remove individuals with missing Anti-factor Xa activity data
+api_no_miss_AFX<-subset(apixaban, `Anti-factor Xa activity (ng/mL)` != "MD")
+riv_no_miss_AFX<-subset(rivaroxaban, `Anti-factor Xa activity (ng/mL)` != "MD")
+
+#remove individuals with missing Creatinine clearance data
+api_no_miss_CrCl<-subset(apixaban, `Creatinine clearance (CrCl)` != "MD")
+riv_no_miss_CrCl<-subset(rivaroxaban, `Creatinine clearance (CrCl)` != "MD")
+
+```
+
+### Anti-factor Xa Activity Distributions:
+
+#### Apixaban:
+
+```{r}
+hist(as.integer(api_no_miss_AFX$`Anti-factor Xa activity (ng/mL)`), main = "Distribution of Anti-Factor Xa Activity - Apixaban", xlab = "Anti-Factor Xa Activity (ng/mL)")
+```
+
+#### Rivaroxaban:
+
+```{r}
+hist(as.integer(riv_no_miss_AFX$`Anti-factor Xa activity (ng/mL)`), main = "Distribution of Anti-Factor Xa Activity - Rivaroxaban", xlab = "Anti-Factor Xa Activity (ng/mL)")
+```
+
+### Dosage vs Anti-factor Xa activity:
+
+#### Apixaban:
+
+```{r}
+
+api_no_miss_AFX_subset<-api_no_miss_AFX[, c(1:20,81)]
+
+ggplot(api_no_miss_AFX_subset, aes(x=as.integer(api_no_miss_AFX_subset$`Therapeutic dose (mg/day)`), y=as.integer(api_no_miss_AFX_subset$`Anti-factor Xa activity (ng/mL)`))) + 
+  geom_point(color = "#ec328c") +
+  scale_x_continuous(name = "Apixaban Dose (mg/day)") + 
+  scale_y_continuous(name = "Anti-factor Xa activity (ng/mL)") +
+  theme_bw() + 
+  theme(text = element_text(size = 12), plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Dose vs Anti-factor Xa activity - Apixaban")
+  
+
+```
+
+#### Rivaroxaban:
+
+```{r}
+
+riv_no_miss_AFX_subset<-riv_no_miss_AFX[, c(1:20,81)]
+
+ggplot(riv_no_miss_AFX_subset, aes(x=as.integer(riv_no_miss_AFX_subset$`Therapeutic dose (mg/day)`), y=as.integer(riv_no_miss_AFX_subset$`Anti-factor Xa activity (ng/mL)`))) + 
+  geom_point(color = "#ec328c") +
+  stat_smooth(method="lm", se = TRUE, fullrange = TRUE, color = "#8c1788") +
+  scale_x_continuous(name = "Rivaroxaban Dose (mg/day)") + 
+  scale_y_continuous(name = "Anti-factor Xa activity (ng/mL)") +
+  theme_bw() + 
+  theme(text = element_text(size = 12), plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Dose vs Anti-factor Xa activity - Rivaroxaban")
+
+
+
+```
+
+### Age vs Anti-factor Xa activity:
+
+#### Apixaban:
+
+```{r}
+
+ggplot(api_no_miss_AFX_subset, aes(x=as.integer(api_no_miss_AFX_subset$`Age at enrollment (with over 89 binning)`), y=as.integer(api_no_miss_AFX_subset$`Anti-factor Xa activity (ng/mL)`))) + 
+  geom_point(color = "#ec328c") +
+  stat_smooth(method="lm", se = TRUE, fullrange = TRUE, color = "#8c1788") +
+  scale_x_continuous(name = "Age") + 
+  scale_y_continuous(name = "Anti-factor Xa activity (ng/mL)") +
+  theme_bw() + 
+  theme(text = element_text(size = 12), plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Age vs Anti-factor Xa activity - Apixaban")
+
+```
+
+#### Rivaroxaban:
+
+```{r}
+
+ggplot(riv_no_miss_AFX_subset, aes(x=as.integer(riv_no_miss_AFX_subset$`Age at enrollment (with over 89 binning)`), y=as.integer(riv_no_miss_AFX_subset$`Anti-factor Xa activity (ng/mL)`))) + 
+  geom_point(color = "#ec328c") +
+  stat_smooth(method="lm", se = TRUE, fullrange = TRUE, color = "#8c1788") +
+  scale_x_continuous(name = "Age") + 
+  scale_y_continuous(name = "Anti-factor Xa activity (ng/mL)") +
+  theme_bw() + 
+  theme(text = element_text(size = 12), plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Age vs Anti-factor Xa activity - Rivaroxaban")
+
+```
+
+### Gender vs Anti-factor Xa activity:
+
+#### Apixaban:
+
+```{r}
+
+ggplot(api_no_miss_AFX_subset, aes(x=api_no_miss_AFX_subset$Gender, y=as.integer(api_no_miss_AFX_subset$`Anti-factor Xa activity (ng/mL)`))) + 
+  geom_point(color = "#ec328c") +
+  scale_x_discrete(name = "Gender") + 
+  scale_y_continuous(name = "Anti-factor Xa activity (ng/mL)") +
+  theme_bw() + 
+  theme(text = element_text(size = 12), plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Gender vs Anti-factor Xa activity - Apixaban")
+
+```
+
+#### Rivaroxaban:
+
+```{r}
+
+ggplot(riv_no_miss_AFX_subset, aes(x=riv_no_miss_AFX_subset$Gender, y=as.integer(riv_no_miss_AFX_subset$`Anti-factor Xa activity (ng/mL)`))) + 
+  geom_point(color = "#ec328c") +
+  scale_x_discrete(name = "Gender") + 
+  scale_y_continuous(name = "Anti-factor Xa activity (ng/mL)") +
+  theme_bw() + 
+  theme(text = element_text(size = 12), plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Gender vs Anti-factor Xa activity - Rivaroxaban")
+
+```
+
+
+
+###  Creatinine clearance Distributions:
+
+#### Apixaban:
+
+```{r}
+hist(as.integer(api_no_miss_CrCl$`Creatinine clearance (CrCl)`), main = "Distribution of Creatinine clearance - Apixaban", xlab = "Creatinine clearance (CrCl)")
+```
+
+#### Rivaroxaban:
+
+```{r}
+hist(as.integer(riv_no_miss_CrCl$`Creatinine clearance (CrCl)`), main = "Distribution of Creatinine clearance - Rivaroxaban", xlab = "Creatinine clearance (CrCl)")
+```
+
+### Dosage vs Creatinine clearance:
+
+#### Apixaban:
+
+```{r}
+
+api_no_miss_CrCl_subset<-api_no_miss_CrCl[, c(1:20,77)]
+
+ggplot(api_no_miss_CrCl_subset, aes(x=as.integer(api_no_miss_CrCl_subset$`Therapeutic dose (mg/day)`), y=as.integer(api_no_miss_CrCl_subset$`Creatinine clearance (CrCl)`))) + 
+  geom_point(color = "#ec328c") +
+  stat_smooth(method="lm", se = TRUE, fullrange = TRUE, color = "#8c1788") +
+  scale_x_continuous(name = "Apixaban Dose (mg/day)") + 
+  scale_y_continuous(name = "Creatinine clearance (CrCl)") +
+  theme_bw() + 
+  theme(text = element_text(size = 12), plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Dose vs Creatinine clearance - Apixaban")
+  
+
+```
+
+#### Rivaroxaban:
+
+```{r}
+
+riv_no_miss_CrCl_subset<-riv_no_miss_CrCl[, c(1:20,77)]
+
+ggplot(riv_no_miss_CrCl_subset, aes(x=as.integer(riv_no_miss_CrCl_subset$`Therapeutic dose (mg/day)`), y=as.integer(riv_no_miss_CrCl_subset$`Creatinine clearance (CrCl)`))) + 
+  geom_point(color = "#ec328c") +
+  stat_smooth(method="lm", se = TRUE, fullrange = TRUE, color = "#8c1788") +
+  scale_x_continuous(name = "Rivaroxaban Dose (mg/day)") + 
+  scale_y_continuous(name = "Creatinine clearance (CrCl)") +
+  theme_bw() + 
+  theme(text = element_text(size = 12), plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Dose vs Creatinine clearance - Rivaroxaban")
+
+
+
+```
+
+### Age vs Creatinine clearance:
+
+#### Apixaban:
+
+```{r}
+
+ggplot(api_no_miss_CrCl_subset, aes(x=as.integer(api_no_miss_CrCl_subset$`Age at enrollment (with over 89 binning)`), y=as.integer(api_no_miss_CrCl_subset$`Creatinine clearance (CrCl)`))) + 
+  geom_point(color = "#ec328c") +
+  stat_smooth(method="lm", se = TRUE, fullrange = TRUE, color = "#8c1788") +
+  scale_x_continuous(name = "Age") + 
+  scale_y_continuous(name = "Creatinine clearance (CrCl)") +
+  theme_bw() + 
+  theme(text = element_text(size = 12), plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Age vs Creatinine clearance - Apixaban")
+
+```
+
+#### Rivaroxaban:
+
+```{r}
+
+ggplot(riv_no_miss_CrCl_subset, aes(x=as.integer(riv_no_miss_CrCl_subset$`Age at enrollment (with over 89 binning)`), y=as.integer(riv_no_miss_CrCl_subset$`Creatinine clearance (CrCl)`))) + 
+  geom_point(color = "#ec328c") +
+  stat_smooth(method="lm", se = TRUE, fullrange = TRUE, color = "#8c1788") +
+  scale_x_continuous(name = "Age") + 
+  scale_y_continuous(name = "Creatinine clearance (CrCl)") +
+  theme_bw() + 
+  theme(text = element_text(size = 12), plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Age vs Creatinine clearance - Rivaroxaban")
+
+```
+
+### Gender vs Creatinine clearance:
+
+#### Apixaban:
+
+```{r}
+
+ggplot(api_no_miss_CrCl_subset, aes(x=api_no_miss_CrCl_subset$Gender, y=as.integer(api_no_miss_CrCl_subset$`Creatinine clearance (CrCl)`))) + 
+  geom_point(color = "#ec328c") +
+  scale_x_discrete(name = "Gender") + 
+  scale_y_continuous(name = "Creatinine clearance (CrCl)") +
+  theme_bw() + 
+  theme(text = element_text(size = 12), plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Gender vs Creatinine clearance - Apixaban")
+
+```
+
+#### Rivaroxaban:
+
+```{r}
+
+ggplot(riv_no_miss_CrCl_subset, aes(x=riv_no_miss_CrCl_subset$Gender, y=as.integer(riv_no_miss_CrCl_subset$`Creatinine clearance (CrCl)`))) + 
+  geom_point(color = "#ec328c") +
+  scale_x_discrete(name = "Gender") + 
+  scale_y_continuous(name = "Creatinine clearance (CrCl)") +
+  theme_bw() + 
+  theme(text = element_text(size = 12), plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Gender vs Creatinine clearance - Rivaroxaban")
+
+```
+
+
+
+## Clopidogrel:
+
+```{r}
+
+#clopidogrel dosage is 75 mg/day for all individuals
+
+clop_data <- fread("account_clopidogrel_processed.csv", header = T)
+
+#remove individuals with missing platelet count data
+clop_no_miss_plat<-subset(clop_data, `Platelet count (cells/microL)` != "MD")
+
+clop_no_miss_plat_subset<-clop_no_miss_plat[-1, c(1:26,208)]
+
+```
+
+### Platelet Count Distribution:
+
+```{r}
+hist(as.integer(clop_no_miss_plat_subset$`Platelet count (cells/microL)`), main = "Distribution of Platelet count - Clopidogrel", xlab = "Platelet count (cells/microL) (*10^3 AuL)")
+```
+
+### Age vs Platelet Count:
+
+```{r}
+
+ggplot(clop_no_miss_plat_subset, aes(x=as.integer(clop_no_miss_plat_subset$`Age at enrollment (with over 89 binning)`), y=as.integer(clop_no_miss_plat_subset$`Platelet count (cells/microL)`))) + 
+  geom_point(color = "#ec328c") +
+  stat_smooth(method="lm", se = TRUE, fullrange = TRUE, color = "#8c1788") +
+  scale_x_continuous(name = "Age") + 
+  scale_y_continuous(name = "Platelet count (cells/microL) (*10^3 AuL)") +
+  theme_bw() + 
+  theme(text = element_text(size = 12), plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Age vs Platelet Count - Clopidogrel")
+
+```
+
+### Gender vs Platelet Count:
+
+```{r}
+
+ggplot(clop_no_miss_plat_subset, aes(x=clop_no_miss_plat_subset$Gender, y=as.integer(clop_no_miss_plat_subset$`Platelet count (cells/microL)`))) + 
+  geom_point(color = "#ec328c") +
+  stat_smooth(method="lm", se = TRUE, fullrange = TRUE, color = "#8c1788") +
+  scale_x_discrete(name = "Gender") + 
+  scale_y_continuous(name = "Platelet count (cells/microL) (*10^3 AuL)") +
+  theme_bw() + 
+  theme(text = element_text(size = 12), plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Gender vs Platelet Count - Clopidogrel")
+
+```
+
+
+
