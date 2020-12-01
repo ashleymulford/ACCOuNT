@@ -1,3 +1,5 @@
+#prior to running: in excel, replaced all "," with ";" so that cvs files would read in and output correctly (with correct columns)
+
 library(data.table)
 library(dplyr)
 library(tibble)
