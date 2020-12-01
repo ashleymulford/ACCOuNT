@@ -5,7 +5,7 @@ clop<-fread("account_clopidogrel_processed_matched_IDs_all.csv")
 noac<-fread("account_noac_processed_matched_IDs_all.csv")
 warf<-fread("account_warfarin_processed_matched_IDs_all.csv")
 
-clop_small<-clop[, c(1:9,28,212)]
+clop_small<-clop[, c(1:9,28,203)]
 noac_small<-noac[, c(1:9,21,22,83)]
 #idk which pheno for warf, add later
 #warf_small<-warf[, c(1:9,22)]
