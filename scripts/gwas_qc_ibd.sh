@@ -19,4 +19,6 @@ plink --file chr1_maf01_r28 --merge-list mergelist.txt --make-bed --out black_im
 plink --bfile black_imputed_filtered_allchr --recode --out black_imputed_filtered_allchr
 
 
-# Run Rscript to separate by drug: 
+# Run Rscript to separate by drug: gwas_qc_separate_ped_by_drug.R
+#creates four ped files with individuals grouped by drug taken (same map file is fine, notes snp info not people)
+
