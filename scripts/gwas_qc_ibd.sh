@@ -18,8 +18,10 @@ plink --file chr1_maf01_r28 --merge-list mergelist.txt --make-bed --out blacks_i
 #make ped/map:
 plink --bfile blacks_imputed_filtered_allchr --recode --out blacks_imputed_filtered_allchr
 
-# Run Rscript to separate by drug: gwas_qc_separate_ped_by_drug.R
+#Run Rscript to get id lists for each drug: get_drug_ids.R
+#Run python to separate by drug: gwas_qc_separate_ped_by_drug.py
 #creates four ped files with individuals grouped by drug taken (same map file is fine, notes snp info not people)
+
 
 #make bed/bim/fam files for each drug:
 plink --ped blacks_clop.ped --map blacks_imputed_filtered_allchr.map --make-bed --out blacks_clop
