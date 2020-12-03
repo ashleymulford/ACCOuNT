@@ -29,3 +29,12 @@ plink --ped blacks_apix.ped --map blacks_imputed_filtered_allchr.map --make-bed 
 plink --ped blacks_riva.ped --map blacks_imputed_filtered_allchr.map --make-bed --out blacks_riva
 plink --ped blacks_warf.ped --map blacks_imputed_filtered_allchr.map --make-bed --out blacks_warf
 
+
+#make input for IBD plot (ex with clop, do for all drugs):
+plink --bfile blacks_clop --autosome --indep-pairwise 50 5 0.2 --out blacks_clop_ibd
+plink --bfile blacks_clop --extract blacks_clop_ibd.prune.in --genome --out blacks_clop_ibd
+
+
+#Rscript to plot: ibd_plots.R
+
+
