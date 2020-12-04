@@ -41,7 +41,7 @@ chrfile = chrpath + drug + "_" + "chr" + c + ".recode.vcf.gz"
 if(os.path.exists(chrpath + 'UMich_dosages/') == False):
     os.mkdir(chrpath + 'UMich_dosages/')
 
-outdosage = open(chrpath + "UMich_dosages/chr" + c + ".dosage.txt","w")
+outdosage = open(chrpath + "UMich_dosages/" + drug + "chr" + c + ".dosage.txt","w")
 for line in gzip.open(chrfile):
     #skip meta data and header lines
     if(line.startswith(b'##')):
