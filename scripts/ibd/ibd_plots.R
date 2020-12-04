@@ -18,7 +18,6 @@ ggplot(data=all_ibd, aes(x=Z0, y=Z1)) +
     ggtitle("Blacks All Drugs IBD")
 dev.off()
 
-
 #Clop IBD plot
 pdf("/home/ashley/account/gwas_qc/blacks/clop_ibd.pdf")
 ggplot(data=clop_ibd, aes(x=Z0, y=Z1)) +
