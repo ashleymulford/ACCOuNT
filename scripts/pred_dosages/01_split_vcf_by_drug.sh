@@ -7,5 +7,5 @@
 
 #Example with Clop:
 for chr in {1..22};
-do vcftools --gzvcf /home/ashley/account/vcfs/blacks_imputed/chr${chr}_maf01_r28.vcf.gz --keep clop_ids_new_filt.txt --recode --out clop_chr${chr};
+do vcftools --gzvcf /home/ashley/account/vcfs/blacks_imputed/all/chr${chr}_maf01_r28.vcf.gz --keep clop_ids_new_filt.txt --recode --out clop_chr${chr};
 done
