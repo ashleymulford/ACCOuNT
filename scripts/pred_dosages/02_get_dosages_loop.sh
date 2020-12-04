@@ -1,21 +1,21 @@
 #For both black and white cohorts:
 
 for chr in {1..22};
-do python /home/ashley/account/scripts/vcf_to_dosage.py -i /home/ashley/account/vcfs/blacks_imputed/clop/ -c ${chr};
+do python /home/ashley/account/scripts/vcf_to_dosage.py -i /home/ashley/account/vcfs/blacks_imputed/clop/ -c ${chr} -d clop;
 done
 
 for chr in {1..22};
-do python /home/ashley/account/scripts/vcf_to_dosage.py -i /home/ashley/account/vcfs/blacks_imputed/apix/ -c ${chr};
+do python /home/ashley/account/scripts/vcf_to_dosage.py -i /home/ashley/account/vcfs/blacks_imputed/apix/ -c ${chr} -d apix;
 done
 
 for chr in {1..22};
-do python /home/ashley/account/scripts/vcf_to_dosage.py -i /home/ashley/account/vcfs/blacks_imputed/riva/ -c ${chr};
+do python /home/ashley/account/scripts/vcf_to_dosage.py -i /home/ashley/account/vcfs/blacks_imputed/riva/ -c ${chr} -d riva;
 done
 
 for chr in {1..22};
-do python /home/ashley/account/scripts/vcf_to_dosage.py -i /home/ashley/account/vcfs/blacks_imputed/noac/ -c ${chr};
+do python /home/ashley/account/scripts/vcf_to_dosage.py -i /home/ashley/account/vcfs/blacks_imputed/noac/ -c ${chr} -d noac;
 done
 
 for chr in {1..22};
-do python /home/ashley/account/scripts/vcf_to_dosage.py -i /home/ashley/account/vcfs/blacks_imputed/warf/ -c ${chr};
+do python /home/ashley/account/scripts/vcf_to_dosage.py -i /home/ashley/account/vcfs/blacks_imputed/warf/ -c ${chr} -d warf;
 done
