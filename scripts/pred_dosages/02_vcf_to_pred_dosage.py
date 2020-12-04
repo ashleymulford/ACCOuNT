@@ -22,13 +22,19 @@ def check_arg(args=None):
 			type=str,
                         required='True'
                         )
+    parser.add_argument('-d', '--drug',
+                        help='drug',
+			type=str,
+                        required='True'
+                        )
     return parser.parse_args(args)
 
 #retrieve command line arguments
 args = check_arg(sys.argv[1:])
 chrpath = args.inputdir
 c = args.chr
-chrfile = chrpath + "chr" + c + "_maf01_r28.vcf.gz"
+drug = args.drug
+chrfile = chrpath + drug + "_" + "chr" + c + ".recode.vcf.gz"
 
 
 # get dosage file data
