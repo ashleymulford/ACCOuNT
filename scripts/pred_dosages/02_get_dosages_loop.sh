@@ -1,4 +1,4 @@
-#For both black and white cohorts:
+#make dosages for each drug group:
 
 for chr in {1..22};
 do python /home/ashley/account/scripts/vcf_to_dosage.py -i /home/ashley/account/vcfs/blacks_imputed/clop/ -c ${chr} -d clop;
