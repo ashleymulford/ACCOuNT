@@ -19,6 +19,8 @@ plink --file clop_chr${chr} --make-bed --out clop_chr${chr};
 done
 
 #Samples file for predixcan:
+plink --vcf clop_chr1.recode.vcf.gz --recode --make-bed --out clop_chr1
 awk '{print $1, $2}' clop_chr1.fam > samples_blacks_clop.txt
 
-
+or do
+clop_ids_filt.txt > samples_blacks_clop.txt
