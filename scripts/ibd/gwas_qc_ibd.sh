@@ -32,11 +32,11 @@ plink --ped blacks_warf.ped --map blacks_imputed_filtered_allchr.map --make-bed 
 
 
 #make input for IBD plot for (all people/drugs):
-plink --bfile blacks_imputed_filtered_allchr --autosome --indep-pairwise 50 5 0.2 --out blacks_all_ibd
+plink --bfile blacks_imputed_filtered_allchr --autosome --indep-pairwise 500 5 0.2 --out blacks_all_ibd
 plink --bfile blacks_imputed_filtered_allchr --extract blacks_all_ibd.prune.in --genome --out blacks_all_ibd
 
 #make input for IBD plot (ex with clop, do for all drugs):
-plink --bfile blacks_clop --autosome --indep-pairwise 50 5 0.2 --out blacks_clop_ibd
+plink --bfile blacks_clop --autosome --indep-pairwise 500 5 0.2 --out blacks_clop_ibd
 plink --bfile blacks_clop --extract blacks_clop_ibd.prune.in --genome --out blacks_clop_ibd
 
 
