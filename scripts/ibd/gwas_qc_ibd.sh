@@ -31,7 +31,7 @@ plink --ped blacks_riva.ped --map blacks_imputed_filtered_allchr.map --make-bed 
 plink --ped blacks_warf.ped --map blacks_imputed_filtered_allchr.map --make-bed --out blacks_warf
 
 
-#make input for IBD plot for (all people/drugs):
+#make input for IBD plot for (all people/drugs): (more stringent threshold)
 plink --bfile blacks_imputed_filtered_allchr --autosome --indep-pairwise 500 50 0.2 --out blacks_all_ibd
 plink --bfile blacks_imputed_filtered_allchr --extract blacks_all_ibd.prune.in --genome --out blacks_all_ibd
 
@@ -39,6 +39,9 @@ plink --bfile blacks_imputed_filtered_allchr --extract blacks_all_ibd.prune.in -
 plink --bfile blacks_clop --autosome --indep-pairwise 50 5 0.2 --out blacks_clop_ibd
 plink --bfile blacks_clop --extract blacks_clop_ibd.prune.in --genome --out blacks_clop_ibd
 
+#make input for IBD plot for all with pre-imputed files:
+plink --bfile ACCOuNTBLACKSfinal_updated --autosome --indep-pairwise 50 5 0.2 --out blacks_preimputed_ibd
+plink --bfile ACCOuNTBLACKSfinal_updated --extract blacks_preimputed_ibd.prune.in --genome --out blacks_preimputed_ibd
 
 #Rscript to plot: ibd_plots.R
 
