@@ -1,5 +1,5 @@
 #!/usr/bin/python
-'''This python script takes one imputed vcf file as input, and makes a predixcan dosage formatted output file: chr*.dosage.txt
+'''This python script takes one gzipped imputed vcf file as input, and makes a predixcan dosage formatted output file: chr*.dosage.txt
 vcfs should be filtered by maf and r2 before using this script
 dose allele is A2, freq is of A2, A2 is alt in vcf
 this script does not make the samples file needed for predixcan
