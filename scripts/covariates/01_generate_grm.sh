@@ -4,7 +4,7 @@
 #Create bed/bim/fam for each drug based on indiividual list:
 
 #Example with clop:
-plink --bfile ACCOuNTBLACKSfinal_updated --keep /home/ashley/account/vcfs/blacks_imputed/clop/clop_ids.txt --make-bed --out pre_imputed_blacks_clop
+plink --bfile /home/ashley/account/vcfs/preimputation_plinkfiles/ACCOuNTBLACKSfinal_updated --keep /home/ashley/account/vcfs/blacks_imputed/clop/clop_ids.txt --make-bed --out pre_imputed_blacks_clop
 
 #Generate Relatedness Matrices:
 #Example with clop:
