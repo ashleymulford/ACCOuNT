@@ -26,3 +26,21 @@
 library(data.table)
 library(dplyr)
 library(ggplot2)
+
+
+fam_clop<-fread("/home/ashley/account/vcfs/preimputation_plinkfiles/clop/pre_imputed_blacks_clop.fam", header = F) %>% select (V1,V2)
+#add pop column
+
+
+#Read in fam file and add column names
+fam_ref<-fread("/home/ashley/LCL_chemotherapy/ALL/ALL_orderedby_ASN_CEU_YRI.fam") %>% select (V1,V2,V3)
+colnames(fam)<-c("pop", "FID", "IID")
+
+#Read in pcs (king output)
+pcs <- fread("/home/ashley/LCL_chemotherapy/ALL/ALL_PCA/kingpc.txt")
+
+
+
+
+
+
