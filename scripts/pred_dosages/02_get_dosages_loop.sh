@@ -1,4 +1,5 @@
 #make dosages for each drug group:
+#vcfs should be gzipped
 
 for chr in {1..22};
 do python /home/ashley/account/vcfs/blacks_imputed/vcf_to_dosage.py -i /home/ashley/account/vcfs/blacks_imputed/clop/ -c ${chr} -d clop;
