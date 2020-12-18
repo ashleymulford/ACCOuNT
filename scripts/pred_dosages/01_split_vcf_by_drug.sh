@@ -10,6 +10,8 @@ for chr in {1..22};
 do vcftools --gzvcf /home/ashley/account/vcfs/blacks_imputed/all/chr${chr}_maf01_r28.vcf.gz --keep clop_ids_new.txt --recode --recode-INFO-all --out clop_chr${chr};
 done
 
+#gzip files afterwards for next step
+
 #Do the above for every drug
 
 #Note: populations were split by drug and all people with genotype data (and geno ids) that were found in the pheno file were included
