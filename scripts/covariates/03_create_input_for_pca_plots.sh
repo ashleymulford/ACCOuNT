@@ -19,3 +19,4 @@ plink --bfile pre_imputed_blacks_clop --bmerge /home/ashley/account/covariates/h
 
 #Largest 10 Eigenvalues:
 #57.69 18.20 12.76 2.39 0.37 0.37 0.37 0.37 0.37 0.37
+
