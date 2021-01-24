@@ -1,4 +1,4 @@
-#For pca plots we want to plot the ACCOUnT cohort and the hapmap pops (YRI, CEU, and ASN) to confirm the pcs are correct.
+#For pca plots we want to plot the ACCOuNT cohort and the hapmap pops (YRI, CEU, and ASN) to confirm the pcs are correct.
 
 #Example with Clop:
 
