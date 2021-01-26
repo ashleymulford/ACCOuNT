@@ -18,3 +18,11 @@
 #10 pcs in file output are of similar scale though (decimals between +1 and -1)
 
 
+
+plink --bfile pre_imputed_blacks_clop_hapmap_merged --indep-pairwise 50 5 0.2 --out pre_imputed_blacks_clop_hapmap_merged
+plink -bfile pre_imputed_blacks_clop_hapmap_merged --extract pre_imputed_blacks_clop_hapmap_merged.prune.in --make-bed --out pre_imputed_blacks_clop_hapmap_merged_pruned
+/home/ashley/king --pca -b pre_imputed_blacks_clop_hapmap_merged_pruned.bed --prefix blacks_clop_hapmap_merged_pruned_pca_
+
+
+
+
