@@ -15,10 +15,6 @@ for chr in {1..22};
 do vcftools --gzvcf /home/ashley/account/vcfs/blacks_imputed/all/chr${chr}_maf01_r28.vcf.gz --keep clop_ids_new_filt.txt --recode --recode-INFO-all --out clop_chr${chr};
 done
 
-
-
-
-
 #will output unzipped vcfs - gzip vcfs afterwards for next step
 
 #Do the above for every drug
