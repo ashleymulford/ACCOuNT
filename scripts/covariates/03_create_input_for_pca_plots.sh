@@ -4,6 +4,16 @@
 
 #Must run pca with all pops, start by merging plinkfiles:
 
+plink --bfile /home/ashley/account/vcfs/preimputation_plinkfiles/clop/missingness_hwe_steps/05filtered_HWE --bmerge /home/ashley/account/covariates/hapmap_pops_plinkfiles_for_pcs/hapmap.hg38 --make-bed --out pre_imputed_blacks_clop_hapmap_merged
+
+plink --bfile hapmap.hg38 --exclude /home/ashley/account/vcfs/preimputation_plinkfiles/clop/pre_imputed_blacks_clop_hapmap_merged-merge.missnp --make-bed --out hapmap.hg38_excluded_snps
+plink --bfile /home/ashley/account/vcfs/preimputation_plinkfiles/clop/missingness_hwe_steps/05filtered_HWE --exclude pre_imputed_blacks_clop_hapmap_merged-merge.missnp --make-bed --out pre_imputed_blacks_clop_excluded_snps
+
+plink --bfile pre_imputed_blacks_clop_excluded_snps --bmerge /home/ashley/account/covariates/hapmap_pops_plinkfiles_for_pcs/hapmap.hg38_excluded_snps --make-bed --out pre_imputed_blacks_clop_hapmap_excluded_snps_merged
+
+
+
+
 #Tried to run merge command but gave an error about number of alleles in certain SNPs (output missnp file with ~300 SNPs)
 plink --bfile pre_imputed_blacks_clop --bmerge /home/ashley/account/covariates/hapmap_pops_plinkfiles_for_pcs/hapmap.hg38 --make-bed --out pre_imputed_blacks_clop_hapmap_merged
 
