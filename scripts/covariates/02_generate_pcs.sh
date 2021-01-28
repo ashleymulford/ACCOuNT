@@ -1,28 +1,15 @@
 #Principal Component Analysis with King:
 #Use pre-imputed plinkfiles, get PCs for each drug group
 
-#Example with clop:
-/home/ashley/king --pca -b pre_imputed_blacks_clop.bed --prefix blacks_clop_pca_
 
-#Note: currently having issue with riva and warf - getting 0.00 for eigen values and pcs
-#clop and apix output fine
+#Example with Clop:
 
-#With mds instead of pca:
-/home/ashley/king --mds -b pre_imputed_blacks_clop.bed --prefix blacks_clop_mds_
+#QC data first:
+/home/ryan/gwasqc_pipeline/shellscripts/01MissingnessFiltering -b /home/ashley/account/vcfs/preimputation_plinkfiles/clop/pre_imputed_blacks_clop --maf 0.01 -a -o /home/ashley/account/vcfs/preimputation_plinkfiles/clop/
+#outputs a series of filtered files, use most filtered: 05filtered_HWE.bed
 
-#This works for all drugs - no 0 values
-
-#main diff between output of --pca and --mds:
-#--pca produces eigen values ~1500-900
-#--mds produces eigen values ~0.3-0.1
-#10 pcs in file output are of similar scale though (decimals between +1 and -1)
+#Run KING:
+/home/ashley/king --pca -b /home/ashley/account/vcfs/preimputation_plinkfiles/clop/missingness_hwe_steps/05filtered_HWE.bed --prefix blacks_clop_
 
 
-
-plink --bfile pre_imputed_blacks_clop_hapmap_merged --indep-pairwise 50 5 0.2 --out pre_imputed_blacks_clop_hapmap_merged
-plink -bfile pre_imputed_blacks_clop_hapmap_merged --extract pre_imputed_blacks_clop_hapmap_merged.prune.in --make-bed --out pre_imputed_blacks_clop_hapmap_merged_pruned
-/home/ashley/king --pca -b pre_imputed_blacks_clop_hapmap_merged_pruned.bed --prefix blacks_clop_hapmap_merged_pruned_pca_
-
-
-
-
+#PCs for each drug saved in /home/ashley/account/covariates/
