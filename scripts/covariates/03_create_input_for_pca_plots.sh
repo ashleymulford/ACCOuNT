@@ -18,4 +18,6 @@ plink --bfile pre_imputed_blacks_clop_excluded_snps --bmerge /home/ashley/accoun
 /home/ashley/king --pca -b pre_imputed_blacks_clop_hapmap_excluded_snps_merged.bed --prefix blacks_clop_hapmap_merged_
 
 #Largest 10 Eigenvalues:
-#3569.71 2389.00 646.99 590.33 494.22 488.86 487.72 486.80 485.43 485.22
+#clop: 3569.71 2389.00 646.99 590.33 494.22 488.86 487.72 486.80 485.43 485.22
+#warf: 3943.91 2430.13 657.37 651.82 548.75 541.18 515.22 506.11 504.37 504.07
+
