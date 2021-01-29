@@ -5,20 +5,20 @@ library(ggplot2)
 library(tibble)
 
 #Read in fam file and add column names
-fam<-fread("/home/ashley/account/vcfs/preimputation_plinkfiles/clop/pre_imputed_blacks_clop_hapmap_merged.fam") %>% select (V1,V2)
+fam<-fread("/home/ashley/account/vcfs/preimputation_plinkfiles/clop/pre_imputed_blacks_clop_hapmap_excluded_snps_merged.fam") %>% select (V1,V2)
 colnames(fam)<-c("FID", "IID")
 #add column with pop
-pop<-c(rep("CEU", 111), rep("AFA", 143), rep("ASN", 170), rep("YRI", 110))
+pop<-c(rep("CEU", 111), rep("AFA", 141), rep("ASN", 170), rep("YRI", 110))
 fam_with_pop<-add_column(fam, pop=pop, .before = "FID")
 
 #Read in pcs (king output)
-pcs <- fread("/home/ashley/account/vcfs/preimputation_plinkfiles/clop/blacks_clop_hapmap_merged_mds_pc.txt")
+pcs <- fread("/home/ashley/account/vcfs/preimputation_plinkfiles/clop/blacks_clop_hapmap_merged_pc.txt")
 
 #Join fam and pcs to reorder pcs and add pop 
 pcdf <- left_join(fam_with_pop, pcs)
 
 #Create vector with eigen values (they appear in output process as king runs pca, no file produced)
-eval<-c(57.69, 18.20, 12.76, 2.39, 0.37, 0.37, 0.37, 0.37, 0.37, 0.37)
+eval<-c(3569.71, 2389.00, 646.99, 590.33, 494.22, 488.86, 487.72, 486.80, 485.43, 485.22)
 
 #Calcuate proportion variance explained by each PC:
 eval<-round(eval/sum(eval),3)
