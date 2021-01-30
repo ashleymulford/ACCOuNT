@@ -1,4 +1,4 @@
-#Make a covariate file for each drug, should contain 10 pcs, gender, age, dose (if variable), and creatinine clearance
+#Make a covariate file for each drug, should contain 10 pcs, gender, age, dose (if variable), and creatinine clearance (not found in clop file)
 
 #Import necessary libraries
 library(data.table)
@@ -38,7 +38,7 @@ riva_samples_pheno<-left_join(riva_samples, noac_pheno)
 warf_samples_pheno<-left_join(warf_samples, warf_pheno)
 
 
-#extract sex, age, dose, and creatinine clearance
+#extract sex, age, dose (not for clop, dose constant), and creatinine clearance (not found in clop file)
 
 
 #combine files
