@@ -56,8 +56,8 @@ riva_covs_pheno<-left_join(riva_cov_pcs, noac_pheno, by = c("FID" = "V1", "IID" 
 apix_pheno_no_ids<-select(apix_covs_pheno, 23)
 riva_pheno_no_ids<-select(riva_covs_pheno, 23)
 #replace MD with NA and remove < characters in nano after outputting
-fwrite(apix_pheno_no_ids, "/home/ashley/account/phenos/noac/apix_pheno_no_ids.txt", sep = "\t", col.names = F, quote = F)
-fwrite(riva_pheno_no_ids, "/home/ashley/account/phenos/noac/riva_pheno_no_ids.txt", sep = "\t", col.names = F, quote = F)
+fwrite(apix_pheno_no_ids, "/home/ashley/account/phenos/apix/apix_pheno_no_ids.txt", sep = "\t", col.names = F, quote = F)
+fwrite(riva_pheno_no_ids, "/home/ashley/account/phenos/riva/riva_pheno_no_ids.txt", sep = "\t", col.names = F, quote = F)
 #make covariates file
 apix_covs<-select(apix_covs_pheno, 3:12,16,21,22)
 riva_covs<-select(riva_covs_pheno, 3:12,16,21,22)
