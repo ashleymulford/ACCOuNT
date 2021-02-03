@@ -10,7 +10,7 @@ drug_list <- c("clop", "apix", "riva", "warf")
 
 for(model in model_list){
   for(drug in drug_list){
-    pred_exp <- fread("/home/ashley/account/pwas_results/blacks/" %&% drug %&% "/predicted_levels/blacks_" %&% drug %&% "_PCAIR_PAV_filtered_" %&% model %&% "_baseline_rho0.1_zpval0.05.txt", header = F) #path to PrediXcan-produced _predicted_expression.txt
+    pred_exp <- fread("/home/ashley/account/pwas_results/blacks/" %&% drug %&% "/predicted_levels/blacks_" %&% drug %&% "_PCAIR_PAV_filtered_" %&% model %&% "_WG_baseline_rho0.1_zpval0.05.txt", header = F) #path to PrediXcan-produced _predicted_expression.txt
     pred_exp$V1 <- NULL
     pred_exp$V2 <- NULL
     pred_exp <- transpose(pred_exp)
