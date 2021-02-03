@@ -1,4 +1,4 @@
-#Make a covariate file for each drug, should contain 10 pcs, gender, age, dose (if variable), and creatinine clearance (not found in clop file)
+#Make a covariate and pheno files for each drug, should contain 10 pcs, gender, age, dose (if variable), and creatinine clearance (not found in clop file)
 #do warf later, don't have pheno info yet
 
 #Import necessary libraries
@@ -83,14 +83,9 @@ for (g in riva_covs_pheno$Gender){
 #add gender column to covs
 apix_covs_all<-add_column(apix_covs, gender = gender_apix)
 riva_covs_all<-add_column(riva_covs, gender = gender_riva)
+#replace MD with NA in nano after outputting
 #output file
 fwrite(apix_covs_all, "/home/ashley/account/covariates/apix/apix_covariates.txt", sep = "\t", col.names = F, quote = F)
 fwrite(riva_covs_all, "/home/ashley/account/covariates/riva/riva_covariates.txt", sep = "\t", col.names = F, quote = F)
-
-
-
-
-
-
 
 
