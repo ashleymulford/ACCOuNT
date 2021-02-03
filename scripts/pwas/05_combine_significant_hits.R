@@ -17,7 +17,7 @@ drug_list <- c("clop", "apix", "riva")
   #Compile significant subsets into single data frame
 for(drug in drug_list){
   for(model in model_list){
-    output <- fread("/home/ashley/account/pwas_results/blacks/" %&% drug %&% "/assoc_gemma_output/" %&% drug %&% "_PCAIR_PAV_filtered_" %&% model %&% "_baseline_rho0.1_zpval0.05.assoc.txt")
+    output <- fread("/home/ashley/account/pwas_results/blacks/" %&% drug %&% "/adj_assoc_output/" %&% drug %&% "_PCAIR_PAV_filtered_" %&% model %&% "_baseline_rho0.1_zpval0.05.adj.txt")
     output <- add_column(output, model = model, .before = "chr")
     output <- add_column(output, drug = drug, .before = "chr")
     if(exists("all_assoc")){
