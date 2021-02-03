@@ -41,11 +41,13 @@ for(drug in drug_list){
   #subset at different thresholds
   all_sig<-subset(all_assoc, pvalues_adjusted_BH < .75)
   most_sig<-subset(all_assoc, pvalues_adjusted_BH < .1)
+  BF_not1<-subset(all_assoc, pvalues_adjusted_bonferroni < 1)
   BF_sig<-subset(all_assoc, pvalues_adjusted_bonferroni < .05)
    
   #Output data frames into directory
   fwrite(all_assoc, "/home/ashley/account/pwas_results/blacks/" %&% drug %&% "/adj_assoc_output/" %&% drug %&% "_allassoc_PCAIR_PAV_filtered_baseline_rho0.1_zpval0.05.adj.txt", na = "NA", quote = F, sep = "\t", col.names = T) 
   fwrite(all_sig, "/home/ashley/account/pwas_results/blacks/" %&% drug %&% "/adj_assoc_output/" %&% drug %&% "_sig_PCAIR_PAV_filtered_baseline_rho0.1_zpval0.05.adj.txt", na = "NA", quote = F, sep = "\t", col.names = T) 
   fwrite(most_sig, "/home/ashley/account/pwas_results/blacks/" %&% drug %&% "/adj_assoc_output/" %&% drug %&% "_most_sig_PCAIR_PAV_filtered_baseline_rho0.1_zpval0.05.adj.txt", na = "NA", quote = F, sep = "\t", col.names = T) 
+  fwrite(BF_not1, "/home/ashley/account/pwas_results/blacks/" %&% drug %&% "/adj_assoc_output/" %&% drug %&% "_BFnot1_PCAIR_PAV_filtered_baseline_rho0.1_zpval0.05.adj.txt", na = "NA", quote = F, sep = "\t", col.names = T) 
   fwrite(BF_sig, "/home/ashley/account/pwas_results/blacks/" %&% drug %&% "/adj_assoc_output/" %&% drug %&% "_BFsig_PCAIR_PAV_filtered_baseline_rho0.1_zpval0.05.adj.txt", na = "NA", quote = F, sep = "\t", col.names = T) 
 }
