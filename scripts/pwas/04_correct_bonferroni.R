@@ -29,6 +29,6 @@ for (drug in drug_list) {
     pvalues_adjusted_BF <- p.adjust(pvalues, method = "bonferroni")
     assoc_file <- add_column(assoc_file,  pvalues_adjusted_BH = pvalues_adjusted_BH , .before = "p_lrt")
     assoc_file <- add_column(assoc_file,  pvalues_adjusted_bonferroni = pvalues_adjusted_BF, .before = "p_lrt")
-    fwrite(assoc_file, "/home/ashley/account/pwas_results/blacks/" %&% drug %&% "/adj_assoc_output/" %&% drug %&% "_PCAIR_PAV_filtered_" %&% model %&% "_baseline_rho0.1_zpval0.05.adj.txt")
+    fwrite(assoc_file, "/home/ashley/account/pwas_results/blacks/" %&% drug %&% "/adj_assoc_output/" %&% drug %&% "_PCAIR_PAV_filtered_" %&% model %&% "_baseline_rho0.1_zpval0.05.adj.txt", sep = "\t", quote = F)
   }
 }
