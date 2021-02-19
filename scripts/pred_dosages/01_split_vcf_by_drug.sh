@@ -5,6 +5,7 @@
 #Apix: remove MP-8428-2 (genotyped wrong, came up as twins with MP-8429-2 but not)
 #Warf: remove MP-8429-2 (genotyped wrong, came up as twins with MP-8428-2 but not)
 #Riva: keep all
+#NOAC (apix/riva): remove MP-8428-2
 
 
 #VCFs have been imputed, filtered, and are separated by chr
@@ -20,5 +21,5 @@ done
 #Do the above for every drug
 
 #Note: populations were split by drug and all people with genotype data (and geno ids) that were found in the pheno file were included except those removed due to IBD QC findings.
-#final counts (genotype data): clop - 141, apix - 132, warf - 296, riva - 102
+#final counts (genotype data): clop - 141, apix - 132, warf - 296, riva - 102, noac - 234
 #People in the pheno file could still have missing (NA) data for the phenotype.
