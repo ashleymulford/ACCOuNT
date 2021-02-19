@@ -72,6 +72,18 @@ for (g in noac_covs_pheno$Gender){
 }
 #add gender column to covs
 noac_covs_all<-add_column(noac_covs, gender = gender_noac)
+#add binary cov to distinguish between apix and riva groups:
+#apix=0 and riva=1
+drug_noac<-c()
+for (d in noac_covs_pheno$'Which NOAC Drug Used'){
+  if (d == "rivaroxaban") {
+    drug_noac<-c(drug_noac, 1)
+  }
+  if (d == "apixaban") {
+    drug_noac<-c(drug_noac, 0)
+  }
+}
+noac_covs_all<-add_column(noac_covs_all, drug_group = drug_noac)
 #output file
 fwrite(noac_covs_all, "/home/ashley/account/covariates/noac/noac_covariates.txt", sep = "\t", col.names = F, quote = F)
 
