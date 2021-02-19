@@ -16,6 +16,9 @@ apix_cov_pcs<-select(apix_pcs, 1,2,7:16)
 riva_pcs <- fread("/home/ashley/account/covariates/riva/blacks_riva_pc.txt")
 riva_cov_pcs<-select(riva_pcs, 1,2,7:16)
 
+noac_pcs <- fread("/home/ashley/account/covariates/noac/blacks_noac_pc.txt")
+noac_cov_pcs<-select(noac_pcs, 1,2,7:16)
+
 
 #import pheno files for each drug:
 clop_pheno<-fread("/home/ashley/account/phenos/clop/clop_pheno_with_ids.txt")
@@ -47,8 +50,33 @@ clop_covs_all<-add_column(clop_covs, gender = gender)
 fwrite(clop_covs_all, "/home/ashley/account/covariates/clop/clop_covariates.txt", sep = "\t", col.names = F, quote = F)
 
 
-
 #NOAC covariates: 10 pcs, age, gender, dosage, creatinine clearance
+
+#join files by ids
+noac_covs_pheno<-left_join(noac_cov_pcs, noac_pheno, by = c("FID" = "V1", "IID" = "V2"))
+#make pheno file
+noac_pheno_no_ids<-select(noac_covs_pheno, 23)
+#replace MD with NA in nano after outputting
+fwrite(noac_pheno_no_ids, "/home/ashley/account/phenos/noac/noac_pheno_no_ids.txt", sep = "\t", col.names = F, quote = F)
+#make covariates file
+noac_covs<-select(noac_covs_pheno, 3:12,16,21,22)
+#remake gender column with F=1 and M=0:
+gender_noac<-c()
+for (g in noac_covs_pheno$Gender){
+  if (g == "F") {
+    gender_noac<-c(gender_noac, 1)
+  }
+  if (g == "M") {
+    gender_noac<-c(gender_noac, 0)
+  }
+}
+#add gender column to covs
+noac_covs_all<-add_column(noac_covs, gender = gender_noac)
+#output file
+fwrite(noac_covs_all, "/home/ashley/account/covariates/noac/noac_covariates.txt", sep = "\t", col.names = F, quote = F)
+
+#Apixaban and Rivaroxaban separately:
+
 #join files by ids
 apix_covs_pheno<-left_join(apix_cov_pcs, noac_pheno, by = c("FID" = "V1", "IID" = "V2"))
 riva_covs_pheno<-left_join(riva_cov_pcs, noac_pheno, by = c("FID" = "V1", "IID" = "V2"))
