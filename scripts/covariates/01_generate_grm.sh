@@ -17,3 +17,4 @@ gemma -bfile pre_imputed_blacks_clop_excluded_snps -gk 1 -o blacks_clop
 plink --bfile pre_imputed_blacks_clop --cluster --matrix --out blacks_clop
 
 
+gemma -bfile pre_imputed_blacks_noac_excluded_snps -gk 1 -o blacks_noac
