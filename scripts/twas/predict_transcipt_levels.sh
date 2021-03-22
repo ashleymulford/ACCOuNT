@@ -10,9 +10,9 @@ for model_pop in ${model_pops[@]}
   for drug in ${drugs[@]}
     do
     python3 /home/wheelerlab3/MetaXcan/software/Predict.py \
-    --model_db_path /home/wheelerlab3/Data/MESA_dbs/${model_pop}_filtered_cpos_hg38.db  \
+    --model_db_path /home/ashley/MESA_dbs/${model_pop}_imputed_10_peer_3_pcs_v2.db \
     --text_genotypes /home/ashley/account/dosages/blacks/${drug}/pred_dosages/${drug}_chr*.dosage.txt.gz \
     --text_sample_ids /home/ashley/account/dosages/blacks/${drug}/samples_${drug}.txt \
-    --prediction_output /home/ashley/account/pwas_results/blacks/${drug}/predicted_levels/blacks_${drug}_${model_pop}_filtered_transcript.txt
+    --prediction_output /home/ashley/account/twas_results/${drug}/predicted_levels/blacks_${drug}_${model_pop}_filtered_predicted_transcript.txt
   done
 done
