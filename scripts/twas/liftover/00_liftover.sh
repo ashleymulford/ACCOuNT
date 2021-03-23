@@ -9,7 +9,7 @@
 #four columns, tab sep, no header: chr#, snp_pos, snp_pos+1 , snp_id (chr#:pos format)
   #example:
   #awk '{print $1 FS $3 FS $3+1 FS $2}' dosages2.txt > prelift.txt
-  #must use unzippied dosage file
+  #must use unzipped dosage file
   # "$#" specifies column number (count starts at 1)
   # in this example column 1 has chr#, column 2 has snp_id, and column 3 has snp_pos - use these to make input file "prelift.txt"
 
