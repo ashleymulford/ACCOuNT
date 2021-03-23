@@ -1,4 +1,4 @@
-#TWAS MESA models are in build 37 - must liftover dosages to build 37 from build 38
+#TWAS MESA models are in build 37 - must liftover dosages to build 37 from build 38 first - see liftover folder for scripts
 
 #Predict transcript levels for four drug groups using AFA and ALL MESA models
 
