@@ -4,6 +4,8 @@
 
 #Predict transcript levels for four drug groups using AFA and ALL MESA models
 
+#Currently getting 0% snps in models after liftover - prob issue with ids, may need rsids instead of chr:pos ids
+
 declare -a drugs=("apix" "clop" "riva" "noac")
 declare -a model_pops=("AFA" "ALL")
 
