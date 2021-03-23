@@ -1,7 +1,5 @@
 #TWAS MESA models are in build 37 - must liftover dosages to build 37 from build 38
 
-
-
 #Predict transcript levels for four drug groups using AFA and ALL MESA models
 
 declare -a drugs=("apix" "clop" "riva" "noac")
