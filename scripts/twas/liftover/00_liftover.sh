@@ -1,4 +1,5 @@
-#Liftover from build 38 to build 37
+#Liftover from build 38 to build 37 - overview
+
 #must run liftover on account dosages (build 37 to build 38) to run twas with mesa models (build 37)
 #requires and input file and a chain (reference) file; outputs two files, one with snps lifted over and one with snps not lifted over
 #get liftover chain files from here: http://hgdownload.soe.ucsc.edu/downloads.html#liftover
@@ -21,13 +22,4 @@
 
 #lifted.txt output file will contain the same four columns as input, with positions lifted to new build but ids from preliftover
 #use Rscript to join output with main geno file to get new positions (column 2 in lifted.txt)
-
-
-
-
-
-
-
-
-
 
