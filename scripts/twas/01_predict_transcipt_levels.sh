@@ -4,7 +4,7 @@
 
 #Predict transcript levels for four drug groups using AFA and ALL MESA models
 
-declare -a drugs=("apix" "clop")
+declare -a drugs=("apix" "clop" "riva" "noac")
 declare -a model_pops=("AFA" "ALL")
 
 for model_pop in ${model_pops[@]}
