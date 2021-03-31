@@ -21,7 +21,7 @@ done
 
 
 
-#Predict transcript levels for four drug groups using relavent mashr models
+#Predict transcript levels for four drug groups using relavent mashr models - mashr models are b38 so use original b38 dosages
 
 declare -a drugs=("apix" "clop" "riva" "noac")
 declare -a model_tiss=("Whole_Blood" "Heart_Atrial_Appendage" "Heart_Left_Ventricle" "Liver")
@@ -33,7 +33,7 @@ for tiss in ${model_tiss[@]}
     python3 /home/wheelerlab3/MetaXcan/software/Predict.py \
     --model_db_path /home/ashley/gtex_v8_mashr_eqtl_dbs/mashr_${tiss}.db \
     --model_db_snp_key varID \
-    --text_genotypes /home/ashley/account/liftover/lifted_dosages_b37/${drug}/b37_dosages/${drug}_chr*_rsid_b37.dosage.txt.gz \
+    --text_genotypes /home/ashley/account/dosages/blacks/${drug}/pred_dosages/${drug}_chr*.dosage.txt.gz \
     --text_sample_ids /home/ashley/account/dosages/blacks/${drug}/samples_${drug}.txt \
     --prediction_output /home/ashley/account/twas_results/${drug}/predicted_levels/blacks_${drug}_${tiss}_filtered_predicted_transcript.txt
   done
