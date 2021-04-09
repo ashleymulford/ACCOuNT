@@ -7,7 +7,7 @@ warf<-fread("account_warfarin_processed_matched_IDs_all.csv")
 
 #save ids, pheno, and covariate columns only, remove unneeded columns so files are easier to work with
 clop_small<-clop[, c(1:9,28,203)]
-noac_small<-noac[, c(1:9,21,22,79,83)]
+noac_small<-noac[, c(1:9,21,22,24,79,83)]
 #idk which pheno for warf, add later
 #warf_small<-warf[, c(1:9,22)]
 
