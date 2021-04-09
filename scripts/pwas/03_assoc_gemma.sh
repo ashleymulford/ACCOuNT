@@ -74,7 +74,7 @@ for drug in ${drugs[@]}
     -notsnp \
     -p /home/ashley/account/phenos/${drug}/${drug}_rn_pheno_no_ids.txt \
     -k /home/ashley/account/covariates/${drug}/blacks_${drug}.cXX.txt \
-    -c /home/ashley/account/covariates/${drug}/${drug}_covariates_new.txt \
+    -c /home/ashley/account/covariates/${drug}/${drug}_covariates.txt \
     -lmm 4 \
     -o ${drug}_rn_PCAIR_PAV_filtered_${model}_baseline_rho0.1_zpval0.05
   done
