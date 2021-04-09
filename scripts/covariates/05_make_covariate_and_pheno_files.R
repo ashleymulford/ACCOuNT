@@ -1,5 +1,6 @@
 #Make a covariate and pheno files for each drug, should contain 10 pcs, gender, age, dose (if variable), and creatinine clearance (not found in clop file)
 #do warf later, don't have pheno info yet
+#add time to blood draw as cov for noac drugs too
 
 #Import necessary libraries
 library(data.table)
@@ -55,11 +56,11 @@ fwrite(clop_covs_all, "/home/ashley/account/covariates/clop/clop_covariates.txt"
 #join files by ids
 noac_covs_pheno<-left_join(noac_cov_pcs, noac_pheno, by = c("FID" = "V1", "IID" = "V2"))
 #make pheno file
-noac_pheno_no_ids<-select(noac_covs_pheno, 23)
+noac_pheno_no_ids<-select(noac_covs_pheno, 24)
 #replace MD with NA in nano after outputting
 fwrite(noac_pheno_no_ids, "/home/ashley/account/phenos/noac/noac_pheno_no_ids.txt", sep = "\t", col.names = F, quote = F)
 #make covariates file
-noac_covs<-select(noac_covs_pheno, 3:12,16,21,22)
+noac_covs<-select(noac_covs_pheno, 3:12,16,21:23)
 #remake gender column with F=1 and M=0:
 gender_noac<-c()
 for (g in noac_covs_pheno$Gender){
@@ -93,14 +94,14 @@ fwrite(noac_covs_all, "/home/ashley/account/covariates/noac/noac_covariates.txt"
 apix_covs_pheno<-left_join(apix_cov_pcs, noac_pheno, by = c("FID" = "V1", "IID" = "V2"))
 riva_covs_pheno<-left_join(riva_cov_pcs, noac_pheno, by = c("FID" = "V1", "IID" = "V2"))
 #make pheno files
-apix_pheno_no_ids<-select(apix_covs_pheno, 23)
-riva_pheno_no_ids<-select(riva_covs_pheno, 23)
+apix_pheno_no_ids<-select(apix_covs_pheno, 24)
+riva_pheno_no_ids<-select(riva_covs_pheno, 24)
 #replace MD with NA and remove < characters in nano after outputting
 fwrite(apix_pheno_no_ids, "/home/ashley/account/phenos/apix/apix_pheno_no_ids.txt", sep = "\t", col.names = F, quote = F)
 fwrite(riva_pheno_no_ids, "/home/ashley/account/phenos/riva/riva_pheno_no_ids.txt", sep = "\t", col.names = F, quote = F)
 #make covariates file
-apix_covs<-select(apix_covs_pheno, 3:12,16,21,22)
-riva_covs<-select(riva_covs_pheno, 3:12,16,21,22)
+apix_covs<-select(apix_covs_pheno, 3:12,16,21:23)
+riva_covs<-select(riva_covs_pheno, 3:12,16,21:23)
 #remake gender column with F=1 and M=0:
 gender_apix<-c()
 for (g in apix_covs_pheno$Gender){
