@@ -76,7 +76,7 @@ for drug in ${drugs[@]}
     -k /home/ashley/account/covariates/${drug}/blacks_${drug}.cXX.txt \
     -c /home/ashley/account/covariates/${drug}/${drug}_covariates.txt \
     -lmm 4 \
-    -o ${drug}_rn_PCAIR_PAV_filtered_${model}_baseline_rho0.1_zpval0.05
+    -o ${drug}_rn_ttbdcov_PCAIR_PAV_filtered_${model}_baseline_rho0.1_zpval0.05
   done
 done
 
