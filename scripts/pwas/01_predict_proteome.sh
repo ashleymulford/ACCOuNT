@@ -46,7 +46,7 @@ for model_pop in ${model_pops[@]}
     --model_db_path /home/ryan/topmed/proteome/current_dbs/${model_pop}_PCAIR_dapg_0.001_T_PAV_filtered_rho0.1_zpval0.05.db \
     --text_genotypes /home/ashley/account/dosages/blacks/${drug}/pred_dosages/${drug}_chr*.dosage.txt.gz \
     --text_sample_ids /home/ashley/account/dosages/blacks/${drug}/samples_${drug}.txt \
-    --prediction_output /home/ashley/account/pwas_results/blacks/${drug}/predicted_levels/blacks_${drug}_PCAIR_PAV_filtered_dapg_0.001_T_${model_pop}_baseline_rho0.1_zpval0.05.txt
+    --prediction_output /home/ashley/account/pwas_results/blacks/${drug}/predicted_levels/blacks_${drug}_PCAIR_PAV_filtered_dapg_0.001_T_${model_pop}_rho0.1_zpval0.05.txt
   done
 done
 
