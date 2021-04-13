@@ -1,7 +1,7 @@
 #Modified version of angela's script
 
 #Converting predicted expression to GEMMA input
-
+#change variables and path based on what is being run
 
 library(data.table)
 "%&%" = function(a,b) paste(a,b,sep="")
